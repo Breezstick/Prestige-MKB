@@ -284,12 +284,68 @@
             "question_10": "",
             "answer_10": ""
           }
+        },
+        "tab_nU7wgQ": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Généralités",
+            "tab_id": "general",
+            "question_1": "Qu'est-ce que BelleFrag™ ?",
+            "answer_1": "<p>BelleFrag™ est un site e-commerce populaire spécialisé dans la vente de parfums hautement concentré. Nous proposons une large sélection de parfums homme, femme et unisexe.</p>",
+            "question_2": "Comment puis-je passer une commande ?",
+            "answer_2": "<p>Passer une commande sur BelleFrag™ est simple. Parcourez notre catalogue, sélectionnez le produit, ajoutez-le à votre panier, et suivez les étapes de paiement.</p>",
+            "question_3": "jjjj",
+            "answer_3": "<p>iiiiiii</p>",
+            "question_4": "",
+            "answer_4": "",
+            "question_5": "",
+            "answer_5": "",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "tab_wTh3XM": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Généralités",
+            "tab_id": "general",
+            "question_1": "Qu'est-ce que BelleFrag™ ?",
+            "answer_1": "<p>BelleFrag™ est un site e-commerce populaire spécialisé dans la vente de parfums hautement concentré. Nous proposons une large sélection de parfums homme, femme et unisexe.</p>",
+            "question_2": "Comment puis-je passer une commande ?",
+            "answer_2": "<p>Passer une commande sur BelleFrag™ est simple. Parcourez notre catalogue, sélectionnez le produit, ajoutez-le à votre panier, et suivez les étapes de paiement.</p>",
+            "question_3": "",
+            "answer_3": "",
+            "question_4": "",
+            "answer_4": "",
+            "question_5": "",
+            "answer_5": "",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
         }
       },
       "block_order": [
         "tab_R66Gfi",
         "tab_jC7QaG",
-        "tab_Qn6bwU"
+        "tab_Qn6bwU",
+        "tab_nU7wgQ",
+        "tab_wTh3XM"
       ],
       "name": "FAQ à onglets",
       "settings": {}
