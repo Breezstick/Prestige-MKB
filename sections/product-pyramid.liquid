@@ -1,6 +1,532 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% comment %} 
+Section: Product Pyramid Olfactive 
+Permet de configurer les notes olfactives avec images via l'éditeur
+{% endcomment %}
+
+{%- style -%}
+  .pyramid-section {
+    display: grid;
+    gap: 4rem;
+    padding: 0 1.5rem;
   }
+
+  .pyramid-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .pyramid-header {
+    text-align: left;
+  }
+
+  .pyramid-subtitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #676666;
+    margin: 0;
+    font-weight: 500;
+    padding-top: 28px;
+  }
+
+  .pyramid-title {
+    font-size: 1.6rem;
+    margin: 0.75rem 0;
+    color: #000;
+    font-weight: bold;
+    margin-top: 0px !important;
+  }
+
+  .pyramid-description {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.75);
+    margin-top: -11px;
+    max-width: 600px;
+    font-weight: 600;
+  }
+
+  .pyramid-tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.75rem;
+  }
+
+  .pyramid-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pyramid-tab {
+    background: #f5f5f5;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .pyramid-tab.active {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+
+  .pyramid-tab:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .pyramid-tab:after {
+    display: none;
+  }
+
+  .note-content {
+    display: none;
+  }
+
+  .note-content.active {
+    display: block;
+  }
+
+  .ingredients-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .ingredient-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 0;
+    position: relative;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    margin-top: -28px;
+  }
+
+  .ingredient-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding-right: 2.5rem;
+    min-height: 80px;
+  }
+
+  .ingredient-title {
+    font-weight: 500;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .ingredient-description {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #666;
+  }
+
+  .ingredient-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .pyramid-section {
+      padding: 0 1rem;
+    }
+
+    .pyramid-tabs {
+      margin: 0 -1rem;
+      padding: 0 1rem 0.75rem;
+      gap: 0.3rem;
+    }
+
+    .pyramid-tab {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .ingredient-item {
+      gap: 1rem;
+      padding-right: 3rem;
+      margin-bottom: 0;
+      padding: 0.4rem 0;
+      margin-top: -28px;
+    }
+
+    .ingredient-image {
+      width: 60px;
+      height: 60px;
+    }
+
+    .ingredient-title {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      padding-top: 18px;
+    }
+
+    .ingredient-description {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      display: block;
+    }
+
+    .pyramid-subtitle {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #676666;
+      margin: 0;
+      font-weight: 500;
+      margin-top: -28px;
+    }
+
+    .ingredient-item:last-child {
+      border-bottom: none;
+    }
+
+    .ingredient-content {
+      min-height: 60px;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .pyramid-section {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .pyramid-section--no-image {
+      grid-template-columns: 1fr;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pyramid-section {
+      gap: 3rem;
+    }
+
+    .pyramid-tabs {
+      flex-wrap: wrap;
+    }
+
+    .pyramid-title {
+      font-size: 2rem;
+    }
+  }
+{%- endstyle -%}
+
+<script>
+  class PyramidTabs {
+    constructor(section) {
+      this.section = section;
+      this.tabs = section.querySelectorAll('.pyramid-tab');
+      this.contents = section.querySelectorAll('.note-content');
+      this.currentIndex = 0;
+      this.interval = parseInt(section.dataset.autoInterval) * 1000;
+      this.intervalId = null;
+
+      this.init();
+    }
+
+    init() {
+      this.showTab(0);
+      this.startAutoChange();
+
+      this.tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          this.currentIndex = index;
+          this.showTab(index);
+          this.resetInterval();
+        });
+      });
+
+      this.section.addEventListener('mouseenter', () => this.stopAutoChange());
+      this.section.addEventListener('mouseleave', () => this.startAutoChange());
+    }
+
+    showTab(index) {
+      this.tabs.forEach(tab => tab.classList.remove('active'));
+      this.contents.forEach(content => content.classList.remove('active'));
+      
+      this.tabs[index].classList.add('active');
+      this.contents[index].classList.add('active');
+    }
+
+    startAutoChange() {
+      if (this.interval > 0) {
+        this.intervalId = setInterval(() => {
+          this.currentIndex = (this.currentIndex + 1) % this.tabs.length;
+          this.showTab(this.currentIndex);
+        }, this.interval);
+      }
+    }
+
+    stopAutoChange() {
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+        this.intervalId = null;
+      }
+    }
+
+    resetInterval() {
+      this.stopAutoChange();
+      this.startAutoChange();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.pyramid-section');
+    sections.forEach(section => new PyramidTabs(section));
+  });
+</script>
+
+<div class="pyramid-section pyramid-section--no-image" data-auto-interval="{{ section.settings.auto_interval }}">
+  <div class="pyramid-content">
+    <div class="pyramid-header">
+      <h2 class="pyramid-subtitle">{{ section.settings.subtitle }}</h2>
+      <h1 class="pyramid-title">{{ section.settings.title }}</h1>
+      {%- if section.settings.description != blank -%}
+        <p class="pyramid-description">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="pyramid-tabs">
+      {% for block in section.blocks %}
+        {% if block.type == 'note_tab' %}
+          <button class="pyramid-tab {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+            {{ block.settings.tab_title }}
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    {% for block in section.blocks %}
+      {% if block.type == 'note_tab' %}
+        <div class="note-content {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+          <div class="ingredients-list">
+            {% for i in (1..5) %}
+              {% assign ingredient_key = 'ingredient_' | append: i %}
+              {% assign image_key = 'image_' | append: i %}
+              {% assign title_key = 'title_' | append: i %}
+              {% assign desc_key = 'description_' | append: i %}
+              
+              {% if block.settings[title_key] != blank %}
+                <div class="ingredient-item">
+                  {% if block.settings[image_key] != blank %}
+                    {{ block.settings[image_key] | image_url: width: 160 | image_tag:
+                      loading: 'lazy',
+                      class: 'ingredient-image',
+                      alt: block.settings[title_key],
+                      widths: '80, 160'
+                    }}
+                  {% endif %}
+                  <div class="ingredient-content">
+                    <h3 class="ingredient-title">{{ block.settings[title_key] }}</h3>
+                    {% if block.settings[desc_key] != blank %}
+                      <p class="ingredient-description">{{ block.settings[desc_key] }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Pyramide Olfactive",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "INGRÉDIENTS PURS & NATURELS"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre",
+      "default": "Pyramide Olfactive"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Description de votre pyramide olfactive"
+    },
+    {
+      "type": "range",
+      "id": "auto_interval",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "sec",
+      "label": "Intervalle changement auto (0=désactivé)",
+      "default": 7
+    }
+  ],
+  "blocks": [
+    {
+      "type": "note_tab",
+      "name": "Onglet de notes",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Titre de l'onglet",
+          "default": "Notes de tête"
+        },
+        {
+          "type": "header",
+          "content": "Ingrédient 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Titre",
+          "default": "Orange"
+        },
+        {
+          "type": "text",
+          "id": "description_1",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Ingrédient 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Titre",
+          "default": "Bergamote"
+        },
+        {
+          "type": "text",
+          "id": "description_2",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Ingrédient 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Titre",
+          "default": "Cardamome"
+        },
+        {
+          "type": "text",
+          "id": "description_3",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Ingrédient 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_4",
+          "label": "Titre"
+        },
+        {
+          "type": "text",
+          "id": "description_4",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Ingrédient 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title_5",
+          "label": "Titre"
+        },
+        {
+          "type": "text",
+          "id": "description_5",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pyramide Olfactive",
+      "blocks": [
+        {
+          "type": "note_tab",
+          "settings": {
+            "tab_title": "Notes de tête"
+          }
+        },
+        {
+          "type": "note_tab",
+          "settings": {
+            "tab_title": "Notes de cœur"
+          }
+        },
+        {
+          "type": "note_tab",
+          "settings": {
+            "tab_title": "Notes de fond"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
