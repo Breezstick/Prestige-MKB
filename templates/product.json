@@ -1,1 +1,144 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"vendor","settings":{}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"payment_terms":{"type":"payment_terms","settings":{}},"separator":{"type":"separator","settings":{}},"description":{"type":"description","settings":{}},"variant_picker":{"type":"variant_picker","settings":{}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{}},"pickup_availability":{"type":"pickup_availability","settings":{}},"complementary_products":{"type":"complementary_products","settings":{}}},"block_order":["vendor","title","price","payment_terms","separator","description","variant_picker","quantity_selector","buy_buttons","complementary_products"],"settings":{}},"related-products":{"type":"related-products","settings":{}}},"order":["main","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "payment_terms": {
+          "type": "payment_terms",
+          "settings": {}
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "collapse_content": true,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "complementary_products": {
+          "type": "complementary_products",
+          "settings": {
+            "title": "Pairs well with",
+            "products_count": 2,
+            "show_below_gallery": true,
+            "stack_products": false,
+            "show_quick_buy": true
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "price",
+        "payment_terms",
+        "separator",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "complementary_products"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "container_size": "lg",
+        "product_info_size": 35,
+        "show_sticky_add_to_cart": true,
+        "center_basic_info": false,
+        "desktop_media_layout": "grid",
+        "desktop_media_grid_gap": 30,
+        "mobile_controls": "dots",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "hide_product_information": false,
+        "stack_products": false,
+        "recommendations_count": 10,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "horizontal_spacing_factor": 1,
+        "vertical_spacing_factor": 1,
+        "subheading": "",
+        "title": "Related products",
+        "content": ""
+      }
+    },
+    "custom_liquid_aqgT6x": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom_liquid.presets.custom_liquid.name",
+      "settings": {
+        "color_scheme": "",
+        "separate_section_with_border": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<div id=\"shopify-section-template--24451720872259__product_pyramid_4QkdVc\" class=\"shopify-section\">\n\n<style>\n  .pyramid-section {\n    display: grid;\n    gap: 4rem;\n    padding: 0 1.5rem;\n  }\n\n  .pyramid-content {\n    display: flex;\n    flex-direction: column;\n    gap: 2rem;\n  }\n\n  .pyramid-header {\n    text-align: left;\n  }\n\n  .pyramid-subtitle {\n    font-size: 0.75rem;\n    text-transform: uppercase;\n    letter-spacing: 0.1em;\n    color: #676666;\n    margin: 0;\n    font-weight: 500;\n    padding-top: 28px;\n  }\n\n  .pyramid-title {\n    font-size: 1.6rem;\n    margin: 0.75rem 0;\n    color: #000;\n    font-weight: bold;\n    margin-top: 0px !important;\n  }\n\n  .pyramid-description {\n    font-size: 0.8rem;\n    line-height: 1.6;\n    color: rgba(0, 0, 0, 0.75);\n    margin-top: -11px;\n    max-width: 600px;\n    font-weight: 600;\n  }\n\n  .pyramid-tabs {\n    display: flex;\n    justify-content: flex-start;\n    gap: 0.4rem;\n    flex-wrap: nowrap;\n    overflow-x: auto;\n    -webkit-overflow-scrolling: touch;\n    scrollbar-width: none; /* Firefox */\n    -ms-overflow-style: none; /* IE and Edge */\n    margin: 0 -1.5rem;\n    padding: 0 1.5rem;\n    margin-bottom: 1rem;\n    border-bottom: 1px solid #eee;\n    padding-bottom: 0.75rem;\n  }\n\n  .pyramid-tabs::-webkit-scrollbar {\n    display: none; /* Chrome, Safari, Opera */\n  }\n\n  .pyramid-tab {\n    background: #f5f5f5;\n    border: none;\n    padding: 0.4rem 0.8rem;\n    font-size: 0.9rem;\n    font-weight: 400;\n    color: #333;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    white-space: nowrap;\n    flex-shrink: 0;\n  }\n\n  .pyramid-tab.active {\n    background-color: #000 !important;\n    color: #fff !important;\n  }\n\n  .pyramid-tab:hover {\n    background: rgba(0, 0, 0, 0.05);\n  }\n\n  .pyramid-tab:after {\n    display: none;\n  }\n\n  .note-content {\n    display: none;\n  }\n\n  .note-content.active {\n    display: block;\n  }\n\n  .ingredients-list {\n    display: flex;\n    flex-direction: column;\n    gap: 2.5rem;\n  }\n\n  .ingredient-item {\n    display: flex;\n    align-items: flex-start;\n    gap: 1.5rem;\n    margin-bottom: 0;\n    position: relative;\n    padding: 0.5rem 0;\n    border-bottom: 1px solid #eee;\n    margin-top: -28px;\n  }\n\n  .ingredient-item:only-child .ingredient-content {\n    justify-content: center;\n  }\n\n  .ingredient-content {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n    text-align: left;\n    padding-right: 2.5rem;\n    min-height: 80px;\n  }\n\n  .ingredient-content:only-child {\n    justify-content: center;\n  }\n\n  .ingredient-content:not(:has(.ingredient-description)) {\n    justify-content: center;\n  }\n\n  .ingredient-title {\n    font-weight: 500;\n    margin: 0;\n    font-size: 1rem;\n  }\n\n  .ingredient-description {\n    margin: 0.25rem 0 0;\n    font-size: 0.9rem;\n    line-height: 1.4;\n    color: #666;\n  }\n\n  .ingredient-image {\n    width: 80px;\n    height: 80px;\n    object-fit: cover;\n    border-radius: 4px;\n    flex-shrink: 0;\n  }\n\n  .pyramid-image {\n    margin: 0 -1.5rem;\n    width: calc(100% + 3rem);\n  }\n\n  .pyramid-image img {\n    width: 100%;\n    height: auto;\n    display: block;\n  }\n\n  @media screen and (max-width: 768px) {\n    .pyramid-section {\n      padding: 0 1rem;\n    }\n\n    .pyramid-tabs {\n      margin: 0 -1rem;\n      padding: 0 1rem 0.75rem;\n      gap: 0.3rem;\n    }\n\n    .pyramid-tab {\n      padding: 0.3rem 0.6rem;\n      font-size: 0.85rem;\n    }\n\n    .ingredient-item {\n      gap: 1rem;\n      padding-right: 3rem;\n      margin-bottom: 0;\n      padding: 0.4rem 0;\n      margin-top: -28px;\n    }\n\n    .ingredient-image {\n      width: 60px;\n      height: 60px;\n    }\n\n    .ingredient-title {\n      font-size: 1rem;\n      margin-bottom: 0.3rem;\n      padding-top: 18px;\n    }\n\n    .ingredient-description {\n      font-size: 0.85rem;\n      line-height: 1.3;\n      display: block;\n    }\n\n    .pyramid-subtitle {\n      font-size: 0.75rem;\n      text-transform: uppercase;\n      letter-spacing: 0.1em;\n      color: #676666;\n      margin: 0;\n      font-weight: 500;\n      margin-top: -28px;\n    }\n\n    .ingredient-item:last-child {\n      border-bottom: none;\n    }\n\n    .pyramid-image {\n      margin: 0 -1rem;\n      width: calc(100% + 2rem);\n    }\n\n    .ingredient-content {\n      min-height: 60px;\n    }\n\n    .ingredient-content:not(:has(.ingredient-description)) {\n      justify-content: flex-start;\n    }\n  }\n\n  @media screen and (min-width: 750px) {\n    .pyramid-section {\n      grid-template-columns: 1fr 1fr;\n      gap: 3rem;\n  \n    }\n\n    .pyramid-section--no-image {\n      grid-template-columns: 1fr;\n      max-width: 800px;\n      margin: 0 auto;\n    }\n  }\n\n  @media screen and (max-width: 749px) {\n    .pyramid-section {\n      gap: 3rem;\n    }\n\n    .pyramid-tabs {\n      flex-wrap: wrap;\n    }\n\n    .pyramid-title {\n      font-size: 2rem;\n    }\n  }\n</style>\n\n<script>\n  class PyramidTabs {\n    constructor(section) {\n      this.section = section;\n      this.tabs = section.querySelectorAll('.pyramid-tab');\n      this.contents = section.querySelectorAll('.note-content');\n      this.ingredients = section.querySelectorAll('.ingredient-item');\n      this.currentIndex = 0;\n      this.interval = parseInt(section.dataset.autoInterval) * 1000;\n      this.intervalId = null;\n\n      this.init();\n    }\n\n    init() {\n      // Initialiser le premier onglet\n      this.showTab(0);\n\n      // Démarrer le changement automatique\n      this.startAutoChange();\n\n      // Gérer les clics sur les onglets\n      this.tabs.forEach((tab, index) => {\n        tab.addEventListener('click', () => {\n          this.currentIndex = index;\n          this.showTab(index);\n          this.resetInterval();\n        });\n      });\n\n      // Gérer le survol\n      this.section.addEventListener('mouseenter', () => this.stopAutoChange());\n      this.section.addEventListener('mouseleave', () => this.startAutoChange());\n    }\n\n    showTab(index) {\n      this.tabs.forEach(tab => tab.classList.remove('active'));\n      this.contents.forEach(content => content.classList.remove('active'));\n      \n      this.tabs[index].classList.add('active');\n      this.contents[index].classList.add('active');\n    }\n\n    startAutoChange() {\n      if (this.interval > 0) {\n        this.intervalId = setInterval(() => {\n          this.currentIndex = (this.currentIndex + 1) % this.tabs.length;\n          this.showTab(this.currentIndex);\n        }, this.interval);\n      }\n    }\n\n    stopAutoChange() {\n      if (this.intervalId) {\n        clearInterval(this.intervalId);\n        this.intervalId = null;\n      }\n    }\n\n    resetInterval() {\n      this.stopAutoChange();\n      this.startAutoChange();\n    }\n  }\n\n  // Initialiser tous les pyramides dans la page\n  document.addEventListener('DOMContentLoaded', function() {\n    const sections = document.querySelectorAll('.pyramid-section');\n    sections.forEach(section => new PyramidTabs(section));\n  });\n</script>\n\n<product-pyramid class=\"pyramid-section pyramid-section--no-image\" data-auto-interval=\"7\">\n  \n  \n  <div class=\"pyramid-content\">\n    <div class=\"pyramid-header\">\n      <h2 class=\"pyramid-subtitle\">INGRÉDIENTS PURS &amp; NATURELS</h2>\n      <h1 class=\"pyramid-title\">Pyramide Olfactive</h1>\n      <p class=\"pyramid-description\"></p>\n    </div>\n\n    <div class=\"pyramid-tabs\"><button class=\"pyramid-tab active\">\n            Notes de tête\n          </button><button class=\"pyramid-tab\">\n            Notes de cœur\n          </button><button class=\"pyramid-tab\">\n            Notes de fond\n          </button></div>\n        \n        \n\n        \n        \n        \n        \n        <div class=\"note-content active\">\n          \n          <div style=\"display: none;\">\n            <p>Tab Title: notes de tête</p>\n            <p>Groupe: head</p>\n            <p>Metafield: notes_de_t_te</p>\n            <p>Ingredient Field: ingredients_note_de_t_te</p>\n            \n          </div>\n\n          <div class=\"ingredients-list\">\n            \n            \n              \n                \n                \n                  <div class=\"ingredient-item\">\n                    \n<img class=\"ingredient-image\" src=\"//bellefrag.com/cdn/shop/files/Oranges_macro_160x160_crop_center.jpg?v=1740088578\" alt=\"Orange\" width=\"80\" height=\"80\" loading=\"lazy\"><div class=\"ingredient-content\">\n                      <h3 class=\"ingredient-title\">Orange</h3>\n                      \n</div>\n                  </div>\n                \n              \n                \n                \n                  <div class=\"ingredient-item\">\n                    \n<img class=\"ingredient-image\" src=\"//bellefrag.com/cdn/shop/files/bergamote_160x160_crop_center.webp?v=1740095492\" alt=\"Bergamote\" width=\"80\" height=\"80\" loading=\"lazy\"><div class=\"ingredient-content\">\n                      <h3 class=\"ingredient-title\">Bergamote</h3>\n                      \n</div>\n                  </div>\n                \n              \n                \n                \n                  <div class=\"ingredient-item\">\n                    \n<img class=\"ingredient-image\" src=\"//bellefrag.com/cdn/shop/files/Cardamome_160x160_crop_center.webp?v=1740097182\" alt=\"Cardamome\" width=\"80\" height=\"80\" loading=\"lazy\"><div class=\"ingredient-content\">\n                      <h3 class=\"ingredient-title\">Cardamome</h3>\n                      \n</div>\n                  </div>\n                \n              \n            \n          </div>\n        </div>\n        \n        \n\n        \n        \n        \n        \n        <div class=\"note-content\">\n          \n          <div style=\"display: none;\">\n            <p>Tab Title: notes de cœur</p>\n            <p>Groupe: heart</p>\n            <p>Metafield: note_de_coeur</p>\n            <p>Ingredient Field: ingredients_note_de_coeur</p>\n            \n          </div>\n\n          <div class=\"ingredients-list\">\n            \n            \n              \n                \n                \n                  <div class=\"ingredient-item\">\n                    \n<img class=\"ingredient-image\" src=\"//bellefrag.com/cdn/shop/files/Vanille_160x160_crop_center.jpg?v=1740162661\" alt=\"Vanille\" width=\"80\" height=\"80\" loading=\"lazy\"><div class=\"ingredient-content\">\n                      <h3 class=\"ingredient-title\">Vanille</h3>\n                      \n</div>\n                  </div>\n                \n              \n            \n          </div>\n        </div>\n        \n        \n\n        \n        \n        \n        \n        <div class=\"note-content\">\n          \n          <div style=\"display: none;\">\n            <p>Tab Title: notes de fond</p>\n            <p>Groupe: base</p>\n            <p>Metafield: notes_de_fond</p>\n            <p>Ingredient Field: ingredient_notes_de_fond</p>\n            \n              <p>Notes de fond value: [\"gid://shopify/Metaobject/221655040323\",\"gid://shopify/Metaobject/221656973635\",\"gid://shopify/Metaobject/221651468611\"]</p>\n              \n                <p>Note de fond: Ambroxan</p>\n              \n                <p>Note de fond: Praline</p>\n              \n                <p>Note de fond: Musc</p>\n              \n            \n          </div>\n\n          <div class=\"ingredients-list\">\n            \n            \n              \n                \n                \n                  <div class=\"ingredient-item\">\n                    \n<img class=\"ingredient-image\" src=\"//bellefrag.com/cdn/shop/files/Ambroxan_160x160_crop_center.png?v=1740159702\" alt=\"Ambroxan\" width=\"80\" height=\"80\" loading=\"lazy\"><div class=\"ingredient-content\">\n                      <h3 class=\"ingredient-title\">Ambroxan</h3>\n                      \n</div>\n                  </div>\n                \n              \n                \n                \n                  <div class=\"ingredient-item\">\n                    \n<img class=\"ingredient-image\" src=\"//bellefrag.com/cdn/shop/files/Praline_160x160_crop_center.jpg?v=1740161630\" alt=\"Praline\" width=\"80\" height=\"80\" loading=\"lazy\"><div class=\"ingredient-content\">\n                      <h3 class=\"ingredient-title\">Praline</h3>\n                      \n</div>\n                  </div>\n                \n              \n                \n                \n                  <div class=\"ingredient-item\">\n                    \n<img class=\"ingredient-image\" src=\"//bellefrag.com/cdn/shop/files/musc-noir_160x160_crop_center.webp?v=1740096383\" alt=\"Musc\" width=\"80\" height=\"80\" loading=\"lazy\"><div class=\"ingredient-content\">\n                      <h3 class=\"ingredient-title\">Musc</h3>\n                      \n</div>\n                  </div>\n                \n              \n            \n          </div>\n        </div></div>\n</product-pyramid>\n</div>",
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "custom_liquid_aqgT6x"
+  ]
+}
