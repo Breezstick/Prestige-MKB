@@ -1,6 +1,331 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- style -%}
+  .custom-faq-section {
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
   }
+  .custom-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .custom-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .custom-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #FBFAF9;
+    border-radius: 5px;
+    border: 1px solid #DCDCDC;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex: 1;
+    text-align: center;
+    min-width: 150px;
+    font-weight: 500;
+  }
+  .custom-tab.active {
+    background-color: #000;
+    color: #fff;
+  }
+  .custom-faq {
+    display: none;
+    text-align: left;
+    opacity: 0;
+    height: 0;
+    transition: opacity 0.5s ease, height 0.5s ease;
+    margin-top: 20px;
+  }
+  .custom-faq.active {
+    display: block;
+    opacity: 1;
+    height: auto;
+  }
+  .custom-details {
+    border-top: 1px solid #ddd;
+  }
+  .custom-details:last-of-type {
+    border-bottom: 1px solid #ddd;
+  }
+  .custom-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 1.1rem;
+    position: relative;
+  }
+  .custom-summary::after {
+    content: "\002B";
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    position: absolute;
+    right: 0;
+  }
+  .custom-details[open] .custom-summary::after {
+    content: "\2212";
+  }
+  .custom-accordion-content {
+    padding-bottom: 15px;
+    padding-right: 30px;
+  }
+  .custom-accordion-content p,
+  .custom-accordion-content ul,
+  .custom-accordion-content ol {
+    margin-top: 0;
+    margin-bottom: 1em;
+    line-height: 1.6;
+  }
+  .custom-accordion-content a {
+    color: #000;
+    text-decoration: underline;
+  }
+  @media (max-width: 750px) {
+    .custom-tabs {
+      gap: 8px;
+    }
+    .custom-tab {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      min-width: 120px;
+    }
+    .custom-summary {
+      padding: 12px 0;
+      font-size: 1rem;
+    }
+    .custom-summary::after {
+      font-size: 1.3rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="custom-faq-section">
+  <div class="custom-tabs">
+    {% for block in section.blocks %}
+      {% if block.type == 'tab' %}
+        <div class="custom-tab {% if forloop.first %}active{% endif %}" 
+             data-target="{{ block.settings.tab_id }}"
+             {{ block.shopify_attributes }}>
+          {{ block.settings.tab_title }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% for block in section.blocks %}
+    {% if block.type == 'tab' %}
+      <div class="custom-faq {% if forloop.first %}active{% endif %}" 
+           id="{{ block.settings.tab_id }}"
+           {{ block.shopify_attributes }}>
+        {% for i in (1..15) %}
+          {% assign question_key = 'question_' | append: i %}
+          {% assign answer_key = 'answer_' | append: i %}
+          
+          {% if block.settings[question_key] != blank %}
+            <details class="custom-details">
+              <summary class="custom-summary">
+                {{ block.settings[question_key] }}
+              </summary>
+              <div class="custom-accordion-content">
+                {{ block.settings[answer_key] }}
+              </div>
+            </details>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des onglets
+    document.querySelectorAll('.custom-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.custom-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        document.querySelectorAll('.custom-faq').forEach(faq => faq.classList.remove('active'));
+        const targetFaq = document.getElementById(tab.dataset.target);
+        if (targetFaq) targetFaq.classList.add('active');
+      });
+    });
+
+    // Gestion des accordéons (un seul ouvert à la fois)
+    document.querySelectorAll('.custom-details').forEach(detail => {
+      detail.addEventListener('toggle', () => {
+        if (detail.open) {
+          document.querySelectorAll('.custom-details[open]').forEach(openDetail => {
+            if (openDetail !== detail) {
+              openDetail.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ à onglets",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Onglet FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Titre de l'onglet",
+          "default": "Généralités"
+        },
+        {
+          "type": "text",
+          "id": "tab_id",
+          "label": "ID unique de l'onglet (en minuscules sans espaces)",
+          "default": "general",
+          "info": "Doit être unique pour chaque onglet (ex: general, livraison, paiement)"
+        },
+        {
+          "type": "header",
+          "content": "Questions & Réponses"
+        },
+        {
+          "type": "text",
+          "id": "question_1",
+          "label": "Question 1",
+          "default": "Qu'est-ce que BelleFrag™ ?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_1",
+          "label": "Réponse 1",
+          "default": "<p>BelleFrag™ est un site e-commerce populaire spécialisé dans la vente de parfums hautement concentré. Nous proposons une large sélection de parfums homme, femme et unisexe.</p>"
+        },
+        {
+          "type": "text",
+          "id": "question_2",
+          "label": "Question 2",
+          "default": "Comment puis-je passer une commande ?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_2",
+          "label": "Réponse 2",
+          "default": "<p>Passer une commande sur BelleFrag™ est simple. Parcourez notre catalogue, sélectionnez le produit, ajoutez-le à votre panier, et suivez les étapes de paiement.</p>"
+        },
+        {
+          "type": "text",
+          "id": "question_3",
+          "label": "Question 3"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_3",
+          "label": "Réponse 3"
+        },
+        {
+          "type": "text",
+          "id": "question_4",
+          "label": "Question 4"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_4",
+          "label": "Réponse 4"
+        },
+        {
+          "type": "text",
+          "id": "question_5",
+          "label": "Question 5"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_5",
+          "label": "Réponse 5"
+        },
+        {
+          "type": "text",
+          "id": "question_6",
+          "label": "Question 6"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_6",
+          "label": "Réponse 6"
+        },
+        {
+          "type": "text",
+          "id": "question_7",
+          "label": "Question 7"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_7",
+          "label": "Réponse 7"
+        },
+        {
+          "type": "text",
+          "id": "question_8",
+          "label": "Question 8"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_8",
+          "label": "Réponse 8"
+        },
+        {
+          "type": "text",
+          "id": "question_9",
+          "label": "Question 9"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_9",
+          "label": "Réponse 9"
+        },
+        {
+          "type": "text",
+          "id": "question_10",
+          "label": "Question 10"
+        },
+        {
+          "type": "richtext",
+          "id": "answer_10",
+          "label": "Réponse 10"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ à onglets",
+      "blocks": [
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Généralités",
+            "tab_id": "general"
+          }
+        },
+        {
+          "type": "tab",
+          "settings": {
+            "tab_title": "Livraison",
+            "tab_id": "livraison"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
