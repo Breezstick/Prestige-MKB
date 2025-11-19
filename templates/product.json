@@ -144,6 +144,7 @@
             "image_1": "shopify://shop_images/Oranges_macro_160x160_crop_center_9710d56a-ff20-4775-990d-b824c6bb75e4.avif",
             "title_1": "Orange",
             "description_1": "",
+            "image_2": "shopify://shop_images/ChatGPT_Image_26_mai_2025_12_28_29.png",
             "title_2": "Bergamote",
             "description_2": "",
             "title_3": "Cardamome",
@@ -175,6 +176,7 @@
           "type": "note_tab",
           "settings": {
             "tab_title": "Notes de fond",
+            "image_1": "shopify://shop_images/ChatGPT_Image_26_juin_2025_16_43_49.png",
             "title_1": "Orange",
             "description_1": "",
             "title_2": "Bergamote",
